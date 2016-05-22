@@ -1,5 +1,8 @@
 package am.traffic.cars;
 
+import javax.swing.*;
+import java.awt.*;
+
 public abstract class Car {
     public int x,y;
     public int height, width;
@@ -22,6 +25,9 @@ public abstract class Car {
     void setWidth(int width) {
         this.width = width;
     }
+
+    public abstract Image getCarImage() ;
+
 
     public int getX(){
         return x;
