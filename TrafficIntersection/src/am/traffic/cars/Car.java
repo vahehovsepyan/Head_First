@@ -1,9 +1,9 @@
 package am.traffic.cars;
 
-import javax.swing.*;
+
 import java.awt.*;
 
-public abstract class Car {
+public abstract class Car extends Thread {
     public int x,y;
     public int height, width;
 
@@ -28,6 +28,8 @@ public abstract class Car {
 
     public abstract Image getCarImage() ;
 
+    public abstract void run();
+
 
     public int getX(){
         return x;
@@ -35,10 +37,5 @@ public abstract class Car {
     public int getY(){
         return y;
     }
-    public int getHeight(){
-        return height;
-    }
-    public int getWidth(){
-        return width;
-    }
+
 }
