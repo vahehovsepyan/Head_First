@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Car1 extends Car {
-
     public Image car1Image ;
+
 
     public Car1(){
         setX(1300);
@@ -32,17 +32,35 @@ public class Car1 extends Car {
     public void run() {
         for (;true;){
 
-            if (getX()==730 && !TrafficLight1.isGreen){
-                System.out.println(TrafficLight1.isGreen);
+            if (isStop){
+
             }else {
-                System.out.println(TrafficLight1.isGreen);
-                try {
-                    this.sleep(30);
-                    move();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                move();
+            }
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void stoping() {
+            isStop=true;
+
+    }
+
+    @Override
+    public void going() {
+        isStop=false;
+    }
+
+    public void lightControl(){
+        if (getX()==730 && !TrafficLight1.isGreen){
+            isStop=true;
+           // checkCars.checkCars(this);
+        }else isStop=false;
+
     }
 }

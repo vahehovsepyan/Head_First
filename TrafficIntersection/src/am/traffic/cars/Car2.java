@@ -31,18 +31,26 @@ public class Car2 extends Car {
     @Override
     public void run() {
         for (;true;){
-
-            if (getX()==400 && !TrafficLight2.isGreen){
-                System.out.println(TrafficLight2.isGreen);
+            if (isStop){
             }else {
-                System.out.println(TrafficLight2.isGreen);
-                try {
-                    this.sleep(30);
-                    move();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                move();
+            }
+            try {
+                Thread.sleep(20);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void stoping() {
+        isStop=true;
+
+    }
+
+    @Override
+    public void going() {
+        isStop=false;
     }
 }

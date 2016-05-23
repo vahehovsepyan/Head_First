@@ -1,7 +1,7 @@
 package am.traffic.light;
 
 public class TrafficLight1 extends TrafficLight {
-    public static boolean isGreen=true;
+    public static volatile boolean isGreen=true;
     public static boolean isRed= false;
     private int count=0;
 

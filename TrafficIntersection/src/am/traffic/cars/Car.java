@@ -6,6 +6,7 @@ import java.awt.*;
 public abstract class Car extends Thread {
     public int x,y;
     public int height, width;
+    public   boolean isStop;
 
 
     public abstract void move();
@@ -29,6 +30,9 @@ public abstract class Car extends Thread {
     public abstract Image getCarImage() ;
 
     public abstract void run();
+
+    public abstract void stoping();
+    public abstract void going();
 
 
     public int getX(){
