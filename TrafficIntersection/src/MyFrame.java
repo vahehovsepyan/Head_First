@@ -1,5 +1,6 @@
-package am.traffic.cars;
-
+import am.traffic.cars.Car;
+import am.traffic.cars.Car1;
+import am.traffic.cars.Car2;
 import am.traffic.light.*;
 
 import javax.imageio.ImageIO;
@@ -20,46 +21,43 @@ public class MyFrame extends Thread implements ActionListener {
 
    // Car car1 = new Car1();
     ArrayList<Car> carList1 = new ArrayList<>();
-    ArrayList<Car> carList2 = new ArrayList<>();
-
-    ArrayList<Car> allCars = new ArrayList<>();
-
-
-    CheckCars checks = new CheckCars(carList1,carList2);
 
     private ArrayList<Car> createCar1(){
-        for (int i = 0; i < 2; i++) {
-            carList1.add(new Car1());
+        int x;
+        int carNumber;
+        carNumber = (int) (5+Math.random()*10);
+        for (int i = 0; i < carNumber; i++) {
+            x= (int) (Math.random()*2);
+            System.out.println(x);
+            if (x==1){
+                carList1.add(new Car1());
+            }else{
+                carList1.add(new Car2());
+            }
         }
         return carList1;
     }
-    private ArrayList<Car> createCar2(){
-        for (int i = 0; i <2 ; i++) {
-            carList2.add(new Car2());
-        }
-        return carList2;
-    }
+
 
     public static void main(String[] args) throws IOException, InterruptedException {
         tLight = new TrafficLight1();
         tLight.start();
         Thread.sleep(50);
         f.createCar1();
-        f.createCar2();
+
         Thread.sleep(100);
         f.go();
         f.goCar();
   }
     public void goCar() throws InterruptedException {
-        allCars.addAll(carList1);
-        allCars.addAll(carList2);
-        Iterator<Car> iter = allCars.iterator();
+
+        Iterator<Car> iter = carList1.iterator();
         while (iter.hasNext()){
             Car c = iter.next();
             c.start();
             Thread.sleep(2000);
         }
-        checks.start();
+        //checks.start();
     }
 
 
@@ -120,10 +118,11 @@ public class MyFrame extends Thread implements ActionListener {
                 g.setColor(Color.red);
                 g.fillOval(720,75,10,10);
             }*/
-            Iterator<Car> iter1 = allCars.iterator();
+            Iterator<Car> iter1 = carList1.iterator();
             while (iter1.hasNext()){
                 Car c = iter1.next();
                 g.drawImage(c.getCarImage(),c.getX(),c.getY(),null);
+
             }
 
         }
