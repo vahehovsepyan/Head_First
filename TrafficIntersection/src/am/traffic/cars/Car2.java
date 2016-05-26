@@ -8,7 +8,8 @@ import java.awt.*;
 public class Car2 extends Car {
     public Image car1Image ;
     int x, y;
-    public static boolean isStop;
+    private boolean isStop;
+    private static int lightX=340;
 
     public int getX() {
         return x;
@@ -20,24 +21,12 @@ public class Car2 extends Car {
         return y;
     }
 
-    @Override
-    public boolean checkCar(Car car) {
-        boolean t=false;
-        int lightX=340;
-        for (int i = 0; i < 10; i++) {
-            if (lightX-100==car.getX()){
-                t=true;
-            }
-            lightX-=100;
-        }
-        return t;
-    }
 
     public void setY(int y) {
         this.y = y;
     }
     public Car2(){
-        setX(-100);
+        setX(-200);
         setY(230);
         car1Image = new ImageIcon("Images/car2.jpg").getImage();
     }
@@ -61,7 +50,7 @@ public class Car2 extends Car {
                 going();
             }
             if (!TrafficLight1.isGreen){
-                if (getX()==340)
+                if (checkCar(this))
                     stoping();
                 if (getX()>340){
                     move();
@@ -72,7 +61,6 @@ public class Car2 extends Car {
                     }
                 }
             }
-
             if (isStop){
                 continue;
             }else move();
@@ -83,6 +71,18 @@ public class Car2 extends Car {
                 e.printStackTrace();
             }
         }
+    }
+
+    private synchronized boolean checkCar(Car car) {
+        boolean t=false;
+        for (int i = 0; i < 10; i++) {
+            if (lightX==car.getX()) {
+                t = true;
+                lightX -= 95;
+            }
+
+        }
+        return t;
     }
 
     public void stoping() {

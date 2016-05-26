@@ -19,13 +19,12 @@ public class MyFrame extends Thread implements ActionListener {
     Timer mainTimer = new Timer(20,this);
     JPanel mainPanel;
 
-   // Car car1 = new Car1();
     ArrayList<Car> carList1 = new ArrayList<>();
 
     private ArrayList<Car> createCar1(){
         int x;
         int carNumber;
-        carNumber = (int) (5+Math.random()*10);
+        carNumber = (int) (3+Math.random()*7);
         for (int i = 0; i < carNumber; i++) {
             x= (int) (Math.random()*2);
             System.out.println(x);
@@ -57,7 +56,6 @@ public class MyFrame extends Thread implements ActionListener {
             c.start();
             Thread.sleep(2000);
         }
-        //checks.start();
     }
 
 
@@ -65,6 +63,7 @@ public class MyFrame extends Thread implements ActionListener {
         JFrame frame = new JFrame();
         mainPanel = new JPanelWithBackground("Images/perekrestok.jpg");
         mainPanel.setLayout(null);
+        
         frame.getContentPane().add(mainPanel);
         mainTimer.start();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -122,6 +121,7 @@ public class MyFrame extends Thread implements ActionListener {
             while (iter1.hasNext()){
                 Car c = iter1.next();
                 g.drawImage(c.getCarImage(),c.getX(),c.getY(),null);
+                if (c.getX()>1500 || c.getX()<-300) iter1.remove();
 
             }
 
